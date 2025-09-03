@@ -1,5 +1,7 @@
 import React from "react";
 
+
+
 const About = () => {
   return (
     <>
@@ -23,6 +25,9 @@ const About = () => {
                 meaningful user value
               </p>
               <div className="w-[530px] h-[2px] dark:bg-[#c8f31d] bg-green-700 absolute bottom-0  "></div>
+            </div>
+            <div>
+              
             </div>
           </div>
           <div>

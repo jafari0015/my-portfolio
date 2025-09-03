@@ -73,7 +73,7 @@ const ContactForm: React.FC = () => {
     }
 
     // Auto-hide toast after 3 seconds
-    setTimeout(() => setStatus({ message: "", type: "" }), 3000);
+    setTimeout(() => setStatus({ message: "", type: "" }), 2000);
   };
 
   return (
@@ -81,8 +81,8 @@ const ContactForm: React.FC = () => {
                     lg:max-w-[600px] 2xl:max-w-[800px] relative">
       {status.message && (
         <div
-          className={`fixed top-24 left-10 sm:left-24 z-50 p-4 rounded-lg shadow-lg transition-all duration-300 ${
-            status.type === "success" ? "bg-green-900 text-white" : "bg-red-900 text-white"
+          className={`absolute bottom-0 sm:left-20  z-50 p-4 rounded-lg shadow-lg transition-all duration-300 ${
+            status.type === "success" ?  "bg-green-900 text-white" : "bg-red-900 text-white"
           }`}
         >
           {status.message}

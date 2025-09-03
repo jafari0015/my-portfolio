@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { IoIosArrowUp } from "react-icons/io";
+import { MdKeyboardArrowUp } from "react-icons/md";
 
 
 const ScrollProgress: React.FC = () => {
@@ -24,11 +24,7 @@ const ScrollProgress: React.FC = () => {
 
       path.style.strokeDashoffset = `${progress}`;
 
-      if (scrollTop > 150) {
-        setIsActive(true);
-      } else {
-        setIsActive(false);
-      }
+      setIsActive(scrollTop > 150);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -43,9 +39,18 @@ const ScrollProgress: React.FC = () => {
     <div
       className={`progress-wrap ${isActive ? "active-progress" : ""}`}
       onClick={scrollToTop}
+      style={{
+        position: "fixed",
+        bottom: "30px",
+        right: "30px",
+        width: "60px",
+        height: "60px",
+        cursor: "pointer",
+        zIndex: 1000,
+      }}
     >
       <svg
-        className="progress-circle svg-content"
+        className="progress-circle"
         width="100%"
         height="100%"
         viewBox="-1 -1 102 102"
@@ -53,8 +58,11 @@ const ScrollProgress: React.FC = () => {
         <path
           ref={pathRef}
           d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"
+          stroke="#4ade80" 
+          strokeWidth="4"
+          fill="none"
+          strokeLinecap="round"
         />
-        <IoIosArrowUp />
       </svg>
     </div>
   );

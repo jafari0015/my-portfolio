@@ -6,18 +6,22 @@ import TitleSection from "@/components/UI/TitleSection";
 import GoToBlogButton from "@/components/Blog/GoToBlogButton";
 import ProfileCard from "@/components/Hero/ProfileCard";
 import Home from "@/components/Hero/Home";
+import { motion } from "framer-motion";
+import { Variants } from "framer-motion";
 
 const About = dynamic(() => import("@/components/About/About"), { ssr: false });
 const Work = dynamic(() => import("@/components/Work/Work"), { ssr: false });
 const Blog = dynamic(() => import("@/components/Blog/Blog"), { ssr: false });
-const ContactSection = dynamic(() => import("@/components/Contact/ContactSection"), { ssr: false });
+const ContactSection = dynamic(
+  () => import("@/components/Contact/ContactSection"),
+  { ssr: false }
+);
 
 interface SocialLink {
   _id: string;
   icon: string;
   url: string;
 }
-
 interface IconType {
   title: string;
   icon: string;
@@ -51,10 +55,30 @@ interface HomePageProps {
   iconsPlatform: IconType[];
 }
 
-const HomePage: NextPage<HomePageProps> = ({ socialLinks, works, blogs, iconsPlatform }) => {
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 200 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: "easeOut" },
+  },
+};
+
+const HomePage: NextPage<HomePageProps> = ({
+  socialLinks,
+  works,
+  blogs,
+  iconsPlatform,
+}) => {
   return (
     <Layout>
-      <main id="home" className="pt-4 sm:pt-28">
+      <motion.main
+        id="home"
+        className="pt-4 sm:pt-28 2xl:px-20"
+        initial="hidden"
+        animate="visible"
+        variants={fadeUp}
+      >
         <div className="w-full p-6 sm:p-12 block sm:flex items-center md:gap-10 xl:gap-6 justify-around clip-path dark:bg-[#121212] bg-[#d2d3db]">
           <ProfileCard socialLinks={socialLinks} />
           <Home />
@@ -62,33 +86,66 @@ const HomePage: NextPage<HomePageProps> = ({ socialLinks, works, blogs, iconsPla
         <div className="inverted-border dark:bg-[#121212] bg-[#d2d3db] hidden xl:flex">
           <div className="bottom-border hidden xl:flex dark:bg-[#121212] bg-[#d2d3db]"></div>
         </div>
+      </motion.main>
+
+      <main className="2xl:px-20">
+        <section className="md:px-8 px-4 xl:px-12 py-20 mt-10 rest-para dark:bg-[#121212] bg-[#d2d3db]">
+          <div className="inverted-top dark:bg-[#121212] bg-[#d2d3db] hidden xl:flex">
+            <div className="top-border dark:bg-[#121212] bg-[#d2d3db] hidden xl:flex"></div>
+          </div>
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            <TitleSection title="About" text="Me" />
+            <About />
+          </motion.div>
+
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            <TitleSection title="My" text="Work" />
+            <Work works={works} />
+          </motion.div>
+
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            <TitleSection title="Latest" text="Blog" />
+            <Blog blogs={blogs} />
+            <GoToBlogButton />
+          </motion.div>
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            <TitleSection title="Get in" text="Touch" />
+            <ContactSection iconsPlatform={iconsPlatform} />
+          </motion.div>
+        </section>
       </main>
-
-      <section className="md:px-8 px-4 xl:px-12 py-20 mt-10 rest-para dark:bg-[#121212] bg-[#d2d3db]">
-         <div className="inverted-top dark:bg-[#121212] bg-[#d2d3db] hidden xl:flex">
-          <div className="top-border dark:bg-[#121212] bg-[#d2d3db] hidden xl:flex"></div>
-        </div>
-        <TitleSection title="About" text="Me" />
-        <About />
-
-        <TitleSection title="My" text="Work" />
-        <Work works={works} />
-
-        <TitleSection title="Latest" text="Blog" />
-        <Blog blogs={blogs} />
-        <GoToBlogButton />
-
-        <TitleSection title="Get in" text="Touch" />
-        <ContactSection iconsPlatform={iconsPlatform} />
-      </section>
     </Layout>
   );
 };
 
 export const getStaticProps: GetStaticProps = async () => {
   try {
-    const socialLinks = await client.fetch<SocialLink[]>(`*[_type == "socialLink"]`);
-    const works = await client.fetch<WorkType[]>(`*[_type == "work"] | order(_createdAt desc){
+    const socialLinks = await client.fetch<SocialLink[]>(
+      `*[_type == "socialLink"]`
+    );
+    const works = await client.fetch<
+      WorkType[]
+    >(`*[_type == "work"] | order(_createdAt desc){
       title,
       description,
       "imageUrl": image.asset->url,
@@ -98,7 +155,9 @@ export const getStaticProps: GetStaticProps = async () => {
       category,
       techStack
     }`);
-    const blogs = await client.fetch<BlogType[]>(`*[_type == "blog"] | order(date desc){
+    const blogs = await client.fetch<
+      BlogType[]
+    >(`*[_type == "blog"] | order(date desc){
       _id,
       title,
       "text": description,
@@ -106,7 +165,9 @@ export const getStaticProps: GetStaticProps = async () => {
       slug,
       date
     }`);
-    const iconsPlatform = await client.fetch<IconType[]>(`*[_type == "iconPlatform"]{
+    const iconsPlatform = await client.fetch<
+      IconType[]
+    >(`*[_type == "iconPlatform"]{
       title,
       text,
       icon,
@@ -116,10 +177,13 @@ export const getStaticProps: GetStaticProps = async () => {
 
     return {
       props: { socialLinks, works, blogs, iconsPlatform },
-      revalidate: 60, 
+      revalidate: 60,
     };
   } catch (err: unknown) {
-    console.error("Sanity fetch error:", err instanceof Error ? err.message : err);
+    console.error(
+      "Sanity fetch error:",
+      err instanceof Error ? err.message : err
+    );
     return {
       props: { socialLinks: [], works: [], blogs: [], iconsPlatform: [] },
     };

@@ -8,7 +8,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const siteTitle = "Mahdi Jafari | Portfolio";
   const siteDescription =
     "Explore Mahdi Jafari’s projects, blogs, and journey as a web developer.";
-  const siteImage = `${siteUrl}/profile_image/preview.jpg`; 
+  const siteImage = `${siteUrl}/profile_image/preview.png`; 
 
   return (
     <>

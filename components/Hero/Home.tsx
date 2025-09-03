@@ -35,7 +35,7 @@ const Home: React.FC = () => {
                   </div>
                   <div>a passionate </div>
                 </div>
-                <span className="border-part border-[1px] border-solid mt-1 dark:border-[#c8f31d] border-green-800">
+                <span className="border-part border-[1px] border-solid mt-1 dark:border-stone-700 border-neutral-200">
                   Front-end Developer
                   <i></i>
                 </span>

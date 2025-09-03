@@ -36,7 +36,7 @@ const Navbar = memo(function Navbar() {
   return (
     <>
       <nav
-        className={`hidden sm:flex fixed top-6 left-1/2 -translate-x-1/2 z-40  transition-all duration-[1s] rounded-full ${
+        className={`hidden sm:flex fixed top-6 left-1/2 -translate-x-1/2 z-40 2xl:px-20 transition-all duration-[1s] rounded-full ${
           navScrolled
             ? "dark:bg-stone-900/10 bg-stone-200 xl:w-[45%] md:w-[70%] fixed backdrop-blur-md"
             : "bg-transparent w-[90%]"

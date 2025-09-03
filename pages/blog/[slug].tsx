@@ -87,13 +87,12 @@ export default function BlogDetail({ blog }: { blog: any }) {
   return (
     <>
       <Background />
-      <div className="flex items-center justify-between gap-4 mb-4 mt-6 px-4 sm:px-6 lg:px-12">
+      <div className="flex items-center justify-between gap-4 mb-4 mt-6 px-4 sm:px-6 md:px-12 lg:px-20 xl:px-28">
         <Navbar />
         <span className="hidden sm:flex">
           <ToggleButton />
         </span>
       </div>
-
       <div className="px-4 sm:px-6 md:px-12 lg:px-20 xl:px-28 py-10 md:py-12 dark:bg-[#121212] bg-[#e3e2e2] rounded-xl max-w-5xl mx-auto">
         <div className="mb-6">
           <div className="flex flex-wrap items-center justify-center gap-2 mt-4">

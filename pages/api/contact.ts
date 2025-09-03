@@ -14,24 +14,17 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
   if (req.method !== "POST") {
-    return res
-      .status(405)
-      .json({ success: false, message: "Method not allowed" });
+    return res.status(405).json({ success: false, message: "Method not allowed" });
   }
 
-  const { name, email, message } = req.body as {
-    name: string;
-    email: string;
-    message: string;
-  };
+  const { name, email, message } = req.body as { name: string; email: string; message: string };
 
   if (!name || !email || !message) {
-    return res
-      .status(400)
-      .json({ success: false, message: "Missing required fields" });
+    return res.status(400).json({ success: false, message: "Missing required fields" });
   }
 
   try {
+
     await client.create({
       _type: "contact",
       name,
@@ -40,22 +33,21 @@ export default async function handler(
       createdAt: new Date().toISOString(),
     });
 
+    
     await resend.emails.send({
       from: "mahdi@resend.dev",
-      to: email,
-      subject: "Thank you for contacting us!",
+      to: email, 
+      subject: "Thanks for contacting me!",
       html: `<p>Hi ${name},</p>
-             <p>Thank you for reaching out. We received your message and will get back to you soon!</p>
+             <p>Thank you for reaching out! I received your message:</p>
+             <blockquote>${message}</blockquote>
+             <p>I will get back to you soon.</p>
              <p>Best regards,<br/>Mahdi Jafari</p>`,
     });
 
-    return res
-      .status(200)
-      .json({ success: true, message: "Message sent successfully!" });
+    return res.status(200).json({ success: true, message: "Auto-reply sent successfully!" });
   } catch (err: unknown) {
     console.error("Error:", err);
-    return res
-      .status(500)
-      .json({ success: false, message: "Internal server error" });
+    return res.status(500).json({ success: false, message: "Internal server error" });
   }
 }
