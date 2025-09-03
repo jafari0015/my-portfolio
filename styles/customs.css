@@ -1,0 +1,301 @@
+
+ .background {
+  position: relative;
+  overflow-x: hidden;
+  padding: 0; 
+  z-index: 0; 
+}
+
+.background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('/profile_image/background.jpg');
+  background-repeat: repeat;
+  background-size: auto;
+  opacity: 0.2;    
+  z-index: -1; 
+  pointer-events: none; 
+}
+@media (max-width: 1280px) {
+    .background::before {
+        left: 0px;
+        top: 0;
+        border-radius: 0%;
+    }
+    .clip-path{
+        border-bottom-left-radius: 20px;
+    }
+    .dark .clip-path {
+        box-shadow:
+            rgba(0, 0, 0, 0.1) 0px 50px 100px -20px,
+            rgba(0, 0, 0, 0.1) 0px 30px 60px -30px,
+            rgba(0, 0, 0, 0.1) 0px -2px 3px 0px inset;
+    }
+
+    .dark .rest-para {
+        box-shadow:
+            rgba(0, 0, 0, 0.1) 0px 50px 100px -20px,
+            rgba(0, 0, 0, 0.1) 0px 30px 60px -30px,
+            rgba(0, 0, 0, 0.1) 0px -2px 6px 0px inset;
+
+    }
+
+    .clip-path {
+        border-radius: 20px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    }
+
+    .rest-para {
+        border-radius: 20px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    }
+
+}
+
+@media (max-width: 640px) {
+    .text-hello {
+        font-size: 20px;
+    }
+}
+.clip-path {
+    position: relative;
+    border-radius: 20px 20px 20px 0;
+}
+
+.inverted-border {
+    width: 650px;
+    height: 80px;
+    position: relative;
+    border-bottom-left-radius: 20px;
+}
+@media (max-width: 1700px) {
+    .inverted-border{
+        width: 500px;
+    }
+    .inverted-top{
+        width: 450px;
+    }
+}
+@media (max-width: 1400px) {
+
+    .inverted-top {
+        width: 540px;
+    }
+}
+.bottom-border {
+    width: 60px;
+    height: 80px;
+    top: -1px;
+    position: absolute;
+    right: -60px;
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+.rest-para {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    position: relative;
+}
+
+.inverted-top {
+    width: 820px;
+    height: 80px;
+    position: absolute;
+    top: -80px;
+    right: 0;
+    border-top-right-radius: 20px;
+}
+
+.top-border {
+    width: 60px;
+    height: 80px;
+    position: absolute;
+    left: -60px;
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
+.hero-section {
+    line-height: 60px;
+}
+
+.border-part {
+    position: relative;
+    display: inline-block;
+    padding: 0 20px;
+}
+
+.border-part:before,
+.border-part::after {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #166534;
+    position: absolute;
+}
+.dark .border-part:before,
+.dark .border-part::after{
+    background-color: #c8f31d;
+}
+.border-part::after {
+    right: -3px;
+    top: -3px;
+}
+
+.border-part::before {
+    left: -3px;
+    top: -3px;
+}
+
+.border-part i {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+.border-part i::before,
+.border-part i::after {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #166534;
+    position: absolute;
+}
+.dark  .border-part i::before,
+.dark  .border-part i::after {
+    background-color: #c8f31d;
+}
+.border-part i::before {
+    left: -3px;
+    bottom: -3px;
+}
+
+.border-part i::after {
+    right: -3px;
+    bottom: -3px;
+}
+
+
+.progress-wrap {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    height: 44px;
+    width: 44px;
+    cursor: pointer;
+    display: block;
+    border-radius: 50px;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 400ms linear;
+    mix-blend-mode: difference;
+}
+
+.progress-wrap.active-progress {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.progress-wrap::after {
+    position: absolute;
+    font-family: 'Font Awesome 5 Free';
+    content: '\f077';
+    text-align: center;
+    line-height: 44px;
+    font-size: 13px;
+    font-weight: 900;
+    color: #000000;
+    left: 0;
+    top: 0;
+    height: 44px;
+    width: 44px;
+    cursor: pointer;
+    display: block;
+    z-index: 1;
+    transition: all 400ms linear;
+}
+
+.progress-wrap svg path {
+    fill: none;
+}
+
+.progress-wrap svg.progress-circle path {
+    stroke: #000000;
+    stroke-width: 4;
+    box-sizing: border-box;
+    transition: all 400ms linear;
+}
+
+.dark .progress-wrap::after,
+.dark .progress-wrap svg.progress-circle path {
+    color: #fff;
+    stroke: #fff;
+}
+
+.dark .backImage {
+  position: relative;
+  overflow-x: hidden; 
+  z-index: 0;
+  background-color: #121212;
+}
+.dark .backImage::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('/profile_image/background.jpg');
+  background-repeat: repeat;
+  background-size: auto;
+  opacity: 0.09;    
+  z-index: -1; 
+  pointer-events: none; 
+}
+.lightBackImage {
+  position: relative;
+  overflow-x: hidden; 
+  z-index: 0;
+  background-color: #fff;
+}
+.lightBackImage::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('/profile_image/background.jpg');
+  background-repeat: repeat;
+  background-size: auto;
+  opacity: 0.2;    
+  z-index: -1; 
+  pointer-events: none; 
+}
+/* .progress-wrap::after {
+  content: '^';
+  font-family: sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  line-height: 44px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+} */
