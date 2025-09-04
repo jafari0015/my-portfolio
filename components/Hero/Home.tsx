@@ -2,6 +2,11 @@ import React from "react";
 import ResumeButton from "../UI/ResiumeButton";
 import ContactButton from "../UI/ContactButton";
 import { motion } from "framer-motion";
+
+const scaleUp = {
+  hidden: { opacity: 0, scale: 0.5 },
+  visible: { opacity: 1, scale: 1, transition: { duration: 1 } },
+};
 const Home: React.FC = () => {
   return (
     <div>
@@ -49,7 +54,7 @@ const Home: React.FC = () => {
                 className="border-b-4 border-green-800 dark:border-[#c8f31d]"
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 2 }}
-                transition={{ duration: 2, delay: 2 }}
+                transition={{ duration: 2, delay: 1 }}
               >
                 Front-end Developer
               </motion.span>
@@ -66,10 +71,16 @@ const Home: React.FC = () => {
           </motion.div>
         </div>
       </div>
-      <div className="flex items-center justify-center mb-10 sm:mb-0 -ml-1 mt-6 sm:mt-14 gap-2 lg:gap-8">
+      <motion.div
+        initial="hidden"
+        variants={scaleUp}
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.5 }}
+        className="flex items-center justify-center mb-10 sm:mb-0 -ml-1 mt-6 sm:mt-14 gap-2 lg:gap-8"
+      >
         <ContactButton />
         <ResumeButton />
-      </div>
+      </motion.div>
     </div>
   );
 };

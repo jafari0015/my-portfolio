@@ -6,7 +6,7 @@ import TitleSection from "@/components/UI/TitleSection";
 import GoToBlogButton from "@/components/Blog/GoToBlogButton";
 import ProfileCard from "@/components/Hero/ProfileCard";
 import Home from "@/components/Hero/Home";
-import { motion } from "framer-motion";
+import { delay, motion } from "framer-motion";
 import { Variants } from "framer-motion";
 
 const About = dynamic(() => import("@/components/About/About"), { ssr: false });
@@ -58,7 +58,10 @@ const fadeInUp = {
   hidden: { opacity: 0, y: 80 },
   visible: { opacity: 1, y: 0, transition: { duration: 1 } },
 };
-
+const slideInLeft = {
+  hidden: { opacity: 0, x: -80 },
+  visible: { opacity: 1, x: 0, transition: { duration: 1, delay: 1 } },
+};
 const HomePage: NextPage<HomePageProps> = ({
   socialLinks,
   works,
@@ -75,7 +78,14 @@ const HomePage: NextPage<HomePageProps> = ({
         variants={fadeInUp}
       >
         <div className="w-full p-6 sm:p-12 block sm:flex items-center md:gap-8 xl:gap-6 justify-center clip-path dark:bg-[#121212] bg-[#d2d3db]">
-          <ProfileCard socialLinks={socialLinks} />
+          <motion.div
+            variants={slideInLeft}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.5 }}
+          >
+            <ProfileCard socialLinks={socialLinks} />
+          </motion.div>
           <Home />
         </div>
         <div className="inverted-border dark:bg-[#121212] bg-[#d2d3db] hidden xl:flex">
