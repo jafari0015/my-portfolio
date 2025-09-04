@@ -9,7 +9,7 @@ import { FaCode } from "react-icons/fa";
 import { GoWorkflow } from "react-icons/go";
 import { PiBookOpenText } from "react-icons/pi";
 import { FaRegMessage } from "react-icons/fa6";
-import ToggleButton from "@/components/Navigation/DesktopNav";
+import ToggleButton from "@/components/Dark-Light/ToggleButton";
 
 interface NavItem {
   id: string;
@@ -41,10 +41,11 @@ const MobileNavbar: React.FC = memo(() => {
   return (
     <nav
       className={`sm:hidden fixed top-0 left-0 w-full z-50 transition-all duration-700 ${
-        navScrolled ? "dark:bg-stone-900/5  backdrop-blur-lg bg-stone-200" : "bg-transparent"
+        navScrolled
+          ? "dark:bg-stone-900/5  backdrop-blur-lg bg-stone-200"
+          : "bg-transparent"
       }`}
     >
-
       <div className="flex justify-between items-center px-6 py-4">
         <div className="flex  dark:text-stone-100 text-xl font-medium mt-5 tracking-widest cursor-pointer transition-all duration-1000">
           <ScrollLink to="home" smooth duration={700}>
@@ -64,7 +65,7 @@ const MobileNavbar: React.FC = memo(() => {
           isOpen ? "translate-y-0" : "-translate-y-full"
         }`}
       >
-        <div className="absolute top-4 left-4">
+        <div className="absolute top-4 left-5 ">
           <ToggleButton />
         </div>
         <FiX

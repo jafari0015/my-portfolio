@@ -54,14 +54,9 @@ interface HomePageProps {
   blogs: BlogType[];
   iconsPlatform: IconType[];
 }
-
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 200 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, ease: "easeOut" },
-  },
+const fadeInUp = {
+  hidden: { opacity: 0, y: 80 },
+  visible: { opacity: 1, y: 0, transition: { duration: 1 } },
 };
 
 const HomePage: NextPage<HomePageProps> = ({
@@ -77,9 +72,9 @@ const HomePage: NextPage<HomePageProps> = ({
         className="pt-4 sm:pt-28 2xl:px-20"
         initial="hidden"
         animate="visible"
-        variants={fadeUp}
+        variants={fadeInUp}
       >
-        <div className="w-full p-6 sm:p-12 block sm:flex items-center md:gap-10 xl:gap-6 justify-around clip-path dark:bg-[#121212] bg-[#d2d3db]">
+        <div className="w-full p-6 sm:p-12 block sm:flex items-center md:gap-8 xl:gap-6 justify-center clip-path dark:bg-[#121212] bg-[#d2d3db]">
           <ProfileCard socialLinks={socialLinks} />
           <Home />
         </div>
@@ -93,45 +88,24 @@ const HomePage: NextPage<HomePageProps> = ({
           <div className="inverted-top dark:bg-[#121212] bg-[#d2d3db] hidden xl:flex">
             <div className="top-border dark:bg-[#121212] bg-[#d2d3db] hidden xl:flex"></div>
           </div>
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-          >
+          <div>
             <TitleSection title="About" text="Me" />
             <About />
-          </motion.div>
+          </div>
 
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-          >
+          <div>
             <TitleSection title="My" text="Work" />
             <Work works={works} />
-          </motion.div>
-
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-          >
+          </div>
+          <div>
             <TitleSection title="Latest" text="Blog" />
             <Blog blogs={blogs} />
             <GoToBlogButton />
-          </motion.div>
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-          >
+          </div>
+          <div>
             <TitleSection title="Get in" text="Touch" />
             <ContactSection iconsPlatform={iconsPlatform} />
-          </motion.div>
+          </div>
         </section>
       </main>
     </Layout>

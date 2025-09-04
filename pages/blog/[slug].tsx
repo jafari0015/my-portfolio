@@ -9,6 +9,7 @@ import Navbar from "@/components/Navigation/NavPages";
 import ToggleButton from "@/components/Dark-Light/ToggleButton";
 import Footer from "@/components/footer/Footer";
 import ImageUrlBuilder from "@sanity/image-url";
+import ScrollProgress from "@/components/UI/ScrollProgress";
 
 const builder = ImageUrlBuilder(client);
 function urlFor(source: any) {
@@ -86,14 +87,15 @@ export default function BlogDetail({ blog }: { blog: any }) {
 
   return (
     <>
+      <ScrollProgress />
       <Background />
-      <div className="flex items-center justify-between gap-4 mb-4 mt-6 px-4 sm:px-6 md:px-12 lg:px-20 xl:px-28">
+      <div className="flex items-center justify-between gap-4 mb-4 mt-6 px-4 sm:px-6 md:px-12 lg:px-20 xl:px-32">
         <Navbar />
         <span className="hidden sm:flex">
           <ToggleButton />
         </span>
       </div>
-      <div className="px-4 sm:px-6 md:px-12 lg:px-20 xl:px-28 py-10 md:py-12 dark:bg-[#121212] bg-[#e3e2e2] rounded-xl max-w-5xl mx-auto">
+      <div className="px-4 sm:px-6 md:px-12 lg:px-20 xl:px-28 py-10 md:py-12 dark:bg-[#121212] bg-[#d2d3db] rounded-xl max-w-7xl mx-auto">
         <div className="mb-6">
           <div className="flex flex-wrap items-center justify-center gap-2 mt-4">
             {blog.techs?.map((tech: any, idx: any) => (

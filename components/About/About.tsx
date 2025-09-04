@@ -1,15 +1,29 @@
 import React from "react";
-
-
-
+import AboutMe from "./AboutMe";
+import { Variants } from "framer-motion";
+import { motion } from "framer-motion";
+const slideInLeft = {
+  hidden: { opacity: 0, x: -80 },
+  visible: { opacity: 1, x: 0, transition: { duration: 1 } },
+};
+const slideInRight = {
+  hidden: { opacity: 0, x: 80 },
+  visible: { opacity: 1, x: 0, transition: { duration: 1 } },
+};
 const About = () => {
   return (
     <>
       <div id="about">
         <div className="lg:flex items-center lg:gap-4 justify-between md:block ">
-          <div>
-            <div className="mt-2 backImage border-[1px] dark:border-stone-700  relative 
-                          border-stone-400 lightBackImage lg:max-w-[600px] p-8 rounded-lg">
+          <div className="block xl:flex items-center justify-between gap-20">
+            <motion.div
+              variants={slideInLeft}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.5 }}
+              className="mt-2 backImage border-[1px] dark:border-stone-700  relative 
+                          border-stone-400 lightBackImage lg:max-w-[600px] p-8 rounded-lg"
+            >
               <h2 className="dark:text-stone-50 text-stone-900 text-xl">
                 Developer Journey
               </h2>
@@ -24,14 +38,18 @@ const About = () => {
                 to deliver solutions that balance technical excellence with
                 meaningful user value
               </p>
-              <div className="w-[530px] h-[2px] dark:bg-[#c8f31d] bg-green-700 absolute bottom-0  "></div>
-            </div>
-            <div>
-              
-            </div>
+              <div className="w-[530px] h-[2px] dark:bg-[#c8f31d] bg-green-700 absolute bottom-0"></div>
+            </motion.div>
+            <motion.div
+              variants={slideInRight}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.5 }}
+            >
+              <AboutMe />
+            </motion.div>
           </div>
-          <div>
-          </div>
+          <div></div>
         </div>
       </div>
     </>

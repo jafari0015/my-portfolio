@@ -63,7 +63,10 @@ const ContactForm: React.FC = () => {
       const data = await res.json();
 
       if (data.success) {
-        setStatus({ message: "Email recived successfully, we'll be in touch soon. !", type: "success" });
+        setStatus({
+          message: "Email recived successfully, we'll be in touch soon. !",
+          type: "success",
+        });
         setFormData({ name: "", email: "", message: "" });
       } else {
         setStatus({ message: data.message, type: "error" });
@@ -77,12 +80,16 @@ const ContactForm: React.FC = () => {
   };
 
   return (
-    <div className="backImage lightBackImage border-[1px] border-stone-300 p-6 rounded-2xl mt-10 dark:border-stone-700 
-                    lg:max-w-[600px] 2xl:max-w-[800px] relative">
+    <div
+      className="backImage lightBackImage border-[1px] border-stone-300 p-6 rounded-2xl mt-10 dark:border-stone-700 
+                    lg:max-w-[700px] 2xl:max-w-[800px] relative"
+    >
       {status.message && (
         <div
           className={`absolute bottom-0 sm:left-20  z-50 p-4 rounded-lg shadow-lg transition-all duration-300 ${
-            status.type === "success" ?  "bg-green-900 text-white" : "bg-red-900 text-white"
+            status.type === "success"
+              ? "bg-green-900 text-white"
+              : "bg-red-900 text-white"
           }`}
         >
           {status.message}
@@ -126,7 +133,9 @@ const ContactForm: React.FC = () => {
             errors.message ? "border-red-700" : ""
           }`}
         />
-        {errors.message && <p className="text-red-700 text-sm">{errors.message}</p>}
+        {errors.message && (
+          <p className="text-red-700 text-sm">{errors.message}</p>
+        )}
 
         <button
           type="submit"

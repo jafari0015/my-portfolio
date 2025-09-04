@@ -9,6 +9,7 @@ import { SlSocialGithub } from "react-icons/sl";
 import { RxVercelLogo } from "react-icons/rx";
 import { motion } from "framer-motion";
 import { Variants } from "framer-motion";
+import ScrollProgress from "@/components/UI/ScrollProgress";
 
 const Navbar = dynamic(() => import("@/components/Navigation/NavPages"), {
   ssr: false,
@@ -57,8 +58,9 @@ const WorkDetailPage: React.FC<WorkProps> = ({ work }) => {
 
   return (
     <>
+      <ScrollProgress />
       <Background />
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8  sm:py-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8  sm:py-10">
         <div className="flex flex-col mt-8 sm:flex-row items-center justify-between gap-4 sm:gap-5 mb-8">
           <Navbar />
           <span className="hidden sm:flex">
@@ -80,11 +82,7 @@ const WorkDetailPage: React.FC<WorkProps> = ({ work }) => {
               By Admain
             </p>
           </motion.div>
-          <motion.div
-             initial="hidden"
-             animate="visible"
-             variants={fadeUp}
-          >
+          <motion.div initial="hidden" animate="visible" variants={fadeUp}>
             <Image
               src={work.imageUrl}
               alt={work.title}
@@ -96,21 +94,18 @@ const WorkDetailPage: React.FC<WorkProps> = ({ work }) => {
           </motion.div>
 
           <div className="flex flex-col xl:flex-row gap-6 lg:gap-12">
-           <motion.div
-             initial="hidden"
-             animate="visible"
-             variants={fadeUp}
-           >
-             <p className="text-gray-700 dark:text-stone-200 whitespace-pre-line mb-6 lg:mb-0 flex-1">
-              {work.description}
-            </p>
-           </motion.div>
-            <motion.div className="grid grid-cols-1 gap-4 mb-6 lg:mb-0 dark:text-stone-100 shadow-xl backImage rounded-xl 
+            <motion.div initial="hidden" animate="visible" variants={fadeUp}>
+              <p className="text-gray-700 dark:text-stone-200 whitespace-pre-line mb-6 lg:mb-0 flex-1">
+                {work.description}
+              </p>
+            </motion.div>
+            <motion.div
+              className="grid grid-cols-1 gap-4 mb-6 lg:mb-0 dark:text-stone-100 shadow-xl backImage rounded-xl 
                           lightBackImage p-4 sm:p-6 lg:p-8 w-full  text-stone-950"
-                          initial="hidden"
-                          animate="visible"
-                          variants={fadeUp}
-                          >
+              initial="hidden"
+              animate="visible"
+              variants={fadeUp}
+            >
               <div className="flex items-center gap-2 sm:gap-3">
                 <CiCalendarDate className="text-lg sm:text-xl" />
                 <h1 className="font-semibold text-base sm:text-lg">Date :</h1>

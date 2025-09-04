@@ -3,7 +3,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { MdKeyboardArrowUp } from "react-icons/md";
 
-
 const ScrollProgress: React.FC = () => {
   const pathRef = useRef<SVGPathElement | null>(null);
   const [isActive, setIsActive] = useState(false);
@@ -13,7 +12,6 @@ const ScrollProgress: React.FC = () => {
     if (!path) return;
 
     const length = path.getTotalLength();
-
     path.style.strokeDasharray = `${length}`;
     path.style.strokeDashoffset = `${length}`;
 
@@ -23,7 +21,6 @@ const ScrollProgress: React.FC = () => {
       const progress = length - (scrollTop * length) / scrollHeight;
 
       path.style.strokeDashoffset = `${progress}`;
-
       setIsActive(scrollTop > 150);
     };
 
@@ -37,7 +34,6 @@ const ScrollProgress: React.FC = () => {
 
   return (
     <div
-      className={`progress-wrap ${isActive ? "active-progress" : ""}`}
       onClick={scrollToTop}
       style={{
         position: "fixed",
@@ -50,7 +46,7 @@ const ScrollProgress: React.FC = () => {
       }}
     >
       <svg
-        className="progress-circle"
+        className="w-full h-full absolute top-0 left-0 stroke-green-800 dark:stroke-[#c8f31d]"
         width="100%"
         height="100%"
         viewBox="-1 -1 102 102"
@@ -58,12 +54,20 @@ const ScrollProgress: React.FC = () => {
         <path
           ref={pathRef}
           d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"
-          stroke="#4ade80" 
           strokeWidth="4"
           fill="none"
           strokeLinecap="round"
         />
       </svg>
+
+      {isActive && (
+        <div
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
+             text-green-700 dark:text-[#c8f31d] text-2xl pointer-events-none"
+        >
+          <MdKeyboardArrowUp />
+        </div>
+      )}
     </div>
   );
 };
