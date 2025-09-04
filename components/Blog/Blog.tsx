@@ -19,7 +19,7 @@ interface BlogProps {
   pageSize?: number;
 }
 
-const Blog: React.FC<BlogProps> = ({ blogs, pageSize = 6 }) => {
+const Blog: React.FC<BlogProps> = ({ blogs, pageSize = 4 }) => {
   const [page, setPage] = useState(1);
   const totalPages = Math.ceil(blogs.length / pageSize);
 
