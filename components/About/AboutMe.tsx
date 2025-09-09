@@ -39,11 +39,14 @@ const AboutMe: React.FC = () => {
 
   return (
     <div
-      className="backImage lightBackImage dark:text-[#c8f31d] text-green-700 font-mono p-8 md:max-w-full rounded-xl 
-                    max-w-xl  shadow-lg mx-auto border-[1px] dark:border-stone-700 
-                          border-stone-400 mt-10 xl:mt-0"
+      className="backImage lightBackImage dark:text-[#c8f31d] text-green-700 font-mono p-8 
+                 rounded-xl shadow-lg mx-auto border-[1px] dark:border-stone-700 border-stone-400 
+                 mt-10 xl:mt-0 max-w-xl md:max-w-full
+                 h-[280px] overflow-hidden"
     >
-      <pre className="text-[10px] leading-4 -ml-2 sm:text-base">{text}</pre>
+      <pre className="text-[10px] leading-4 -ml-2 sm:text-base w-full h-full">
+        {text}
+      </pre>
     </div>
   );
 };

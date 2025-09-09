@@ -1,11 +1,11 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
+import { toast } from "sonner";
 
 interface FormData {
   name: string;
   email: string;
   message: string;
 }
-
 interface FormErrors {
   name?: string;
   email?: string;
@@ -19,10 +19,7 @@ const ContactForm: React.FC = () => {
     message: "",
   });
   const [errors, setErrors] = useState<FormErrors>({});
-  const [status, setStatus] = useState<{
-    message: string;
-    type: "success" | "error" | "";
-  }>({ message: "", type: "" });
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -49,9 +46,12 @@ const ContactForm: React.FC = () => {
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
-      setStatus({ message: "", type: "" });
       return;
     }
+
+    setLoading(true);
+
+    const toastId = toast.loading("Sending your message...");
 
     try {
       const res = await fetch("/api/contact", {
@@ -63,39 +63,25 @@ const ContactForm: React.FC = () => {
       const data = await res.json();
 
       if (data.success) {
-        setStatus({
-          message: "Email recived successfully, we'll be in touch soon. !",
-          type: "success",
+        toast.success("Email received successfully! We'll be in touch soon.", {
+          id: toastId,
         });
         setFormData({ name: "", email: "", message: "" });
       } else {
-        setStatus({ message: data.message, type: "error" });
+        toast.error(data.message || "Failed to send message.", { id: toastId });
       }
     } catch (error) {
-      setStatus({ message: "Something went wrong.", type: "error" });
+      toast.error("Something went wrong. Please try again.", { id: toastId });
+    } finally {
+      setLoading(false);
     }
-
-    // Auto-hide toast after 3 seconds
-    setTimeout(() => setStatus({ message: "", type: "" }), 2000);
   };
 
   return (
     <div
       className="backImage lightBackImage border-[1px] border-stone-300 p-6 rounded-2xl mt-10 dark:border-stone-700 
-                    lg:max-w-[700px] 2xl:max-w-[800px] relative"
+                    lg:max-w-[700px] 2xl:max-w-[800px]"
     >
-      {status.message && (
-        <div
-          className={`absolute bottom-0 sm:left-20  z-50 p-4 rounded-lg shadow-lg transition-all duration-300 ${
-            status.type === "success"
-              ? "bg-green-900 text-white"
-              : "bg-red-900 text-white"
-          }`}
-        >
-          {status.message}
-        </div>
-      )}
-
       <form
         onSubmit={handleSubmit}
         className="flex flex-col gap-4 lg:w-[350px] xl:w-[450px]"
@@ -139,9 +125,10 @@ const ContactForm: React.FC = () => {
 
         <button
           type="submit"
-          className="w-full dark:bg-[#c8f31d]  bg-green-800 text-stone-950 font-semibold p-3 rounded-lg  transition-colors"
+          disabled={loading}
+          className="w-full dark:bg-[#c8f31d] bg-green-800 text-stone-950 font-semibold p-3 rounded-lg transition-colors disabled:opacity-50"
         >
-          Send Message
+          {loading ? "Sending..." : "Send Message"}
         </button>
       </form>
     </div>

@@ -26,21 +26,6 @@ const Footer = dynamic(() => import("../../components/footer/Footer"), {
   ssr: false,
 });
 
-type Work = {
-  title: string;
-  description: string;
-  imageUrl: string;
-  link?: string;
-  github?: string;
-  techStack?: string[];
-  date: string;
-  category: string;
-};
-
-type WorkProps = {
-  work: Work | null;
-};
-
 const WorkDetailPage: React.FC<WorkProps> = ({ work }) => {
   const router = useRouter();
 

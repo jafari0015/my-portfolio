@@ -5,7 +5,8 @@ import Navbar from "@/components/Navigation/DesktopNav";
 import Footer from "@/components/footer/Footer";
 import ScrollProgress from "@/components/UI/ScrollProgress";
 import Background from "@/components/Background/Background";
-import MobileNavbar from "../Navigation/MobileNav";
+import MobileNavbar from "../../components/Navigation/MobileNav";
+import { Toaster } from "@/components/ui/sonner";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -19,6 +20,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <MobileNavbar />
       <ScrollProgress />
       <main className="flex-1">{children}</main>
+      <Toaster position="top-center" richColors />
       <Footer />
     </div>
   );

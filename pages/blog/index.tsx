@@ -9,19 +9,6 @@ import Footer from "@/components/footer/Footer";
 import { useState } from "react";
 import ScrollProgress from "@/components/UI/ScrollProgress";
 import { motion } from "framer-motion";
-interface Blog {
-  _id: string;
-  title: string;
-  text: string;
-  techs: string[];
-  slug: { current: string };
-  date: string;
-  mainImage?: { asset: { url: string } };
-}
-
-interface Props {
-  blogs: Blog[];
-}
 
 const PAGE_SIZE = 6;
 

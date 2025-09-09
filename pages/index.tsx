@@ -1,13 +1,12 @@
 import dynamic from "next/dynamic";
 import { GetStaticProps, NextPage } from "next";
 import { client } from "@/libs/sanity";
-import Layout from "@/components/Layout/Layout";
+import Layout from "@/pages/Layout/Layout";
 import TitleSection from "@/components/UI/TitleSection";
 import GoToBlogButton from "@/components/Blog/GoToBlogButton";
 import ProfileCard from "@/components/Hero/ProfileCard";
 import Home from "@/components/Hero/Home";
 import { delay, motion } from "framer-motion";
-import { Variants } from "framer-motion";
 
 const About = dynamic(() => import("@/components/About/About"), { ssr: false });
 const Work = dynamic(() => import("@/components/Work/Work"), { ssr: false });
@@ -17,43 +16,6 @@ const ContactSection = dynamic(
   { ssr: false }
 );
 
-interface SocialLink {
-  _id: string;
-  icon: string;
-  url: string;
-}
-interface IconType {
-  title: string;
-  icon: string;
-  text: string;
-  target: string;
-  link: string;
-}
-
-interface WorkType {
-  title: string;
-  description: string;
-  imageUrl: string;
-  github: string;
-  slug: { current: string };
-  techStack?: string[];
-}
-
-interface BlogType {
-  _id: string;
-  title: string;
-  text: string;
-  techs?: string[];
-  slug: { current: string };
-  date: string;
-}
-
-interface HomePageProps {
-  socialLinks: SocialLink[];
-  works: WorkType[];
-  blogs: BlogType[];
-  iconsPlatform: IconType[];
-}
 const fadeInUp = {
   hidden: { opacity: 0, y: 80 },
   visible: { opacity: 1, y: 0, transition: { duration: 1 } },
