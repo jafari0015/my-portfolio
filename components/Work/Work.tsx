@@ -3,8 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import dynamic from "next/dynamic";
-import { motion } from "framer-motion";
-import { Variants } from "framer-motion";
+import { motion, Variants } from "framer-motion";
+
 const SpotLightCard = dynamic(
   () => import("@/components/Animations/SpotLightCard"),
   { ssr: false }
@@ -28,27 +28,29 @@ const Work: React.FC<WorkProps> = ({ works, pageSize = 6 }) => {
   const [page, setPage] = useState(1);
 
   const totalPages = Math.ceil(works.length / pageSize);
-
   const paginatedWorks = works.slice(0, page * pageSize);
 
   const loadMore = () => {
     if (page < totalPages) setPage(page + 1);
   };
-  const scaleUp = {
+
+  const scaleUp: Variants = {
     hidden: { opacity: 0, scale: 0.5 },
     visible: { opacity: 1, scale: 1, transition: { duration: 1 } },
   };
+
   return (
     <section id="work" className="mt-10 px-4">
       <div className="grid lg:grid-cols-3 md:grid-cols-1 gap-6">
         {paginatedWorks.map((work) => (
           <motion.div
+            key={work.slug.current}
             initial="hidden"
             variants={scaleUp}
             whileInView="visible"
             viewport={{ once: true, amount: 0.5 }}
           >
-            <SpotLightCard key={work.slug.current} className="p-6">
+            <SpotLightCard className="p-6">
               <div>
                 <div className="relative w-full h-[200px] sm:h-[220px] md:h-[250px] lg:h-[150px] xl:h-[180px]">
                   <a
@@ -82,8 +84,8 @@ const Work: React.FC<WorkProps> = ({ works, pageSize = 6 }) => {
                   <div className="grid grid-cols-2 gap-1 sm:flex">
                     {(work.techStack ?? []).map((tech, idx) => (
                       <span
-                        className="dark:border-stone-700 border-[1px] bg-transparent dark:hover:bg-white dark:hover:text-stone-900 hover:scale-105 transition-all duration-500 cursor-pointer bg-gray-300 hover:bg-stone-900 hover:text-stone-300 dark:text-stone-100 text-xs rounded-2xl px-2 p-1"
                         key={idx}
+                        className="dark:border-stone-700 border-[1px] bg-transparent dark:hover:bg-white dark:hover:text-stone-900 hover:scale-105 transition-all duration-500 cursor-pointer bg-gray-300 hover:bg-stone-900 hover:text-stone-300 dark:text-stone-100 text-xs rounded-2xl px-2 p-1"
                       >
                         {tech}
                       </span>
