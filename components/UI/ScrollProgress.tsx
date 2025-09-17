@@ -35,15 +35,7 @@ const ScrollProgress: React.FC = () => {
   return (
     <div
       onClick={scrollToTop}
-      style={{
-        position: "fixed",
-        bottom: "30px",
-        right: "30px",
-        width: "60px",
-        height: "60px",
-        cursor: "pointer",
-        zIndex: 1000,
-      }}
+      className="fixed bottom-[30px] right-[30px] w-[30px] h-[30px] md:w-[40px] md:h-[40px] cursor-pointer z-50"
     >
       <svg
         className="w-full h-full absolute top-0 left-0 stroke-green-800 dark:stroke-[#c8f31d]"
@@ -65,7 +57,7 @@ const ScrollProgress: React.FC = () => {
           className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
              text-green-700 dark:text-[#c8f31d] text-2xl pointer-events-none"
         >
-          <MdKeyboardArrowUp />
+          <MdKeyboardArrowUp className="w-5 md:w-10" />
         </div>
       )}
     </div>

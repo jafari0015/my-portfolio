@@ -40,7 +40,7 @@ const Work: React.FC<WorkProps> = ({ works, pageSize = 6 }) => {
   };
 
   return (
-    <section id="work" className="mt-10 px-4">
+    <section id="work" className="mt-10">
       <div className="grid lg:grid-cols-3 md:grid-cols-1 gap-6">
         {paginatedWorks.map((work) => (
           <motion.div
