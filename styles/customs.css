@@ -1,25 +1,25 @@
-
- .background {
-  position: relative;
-  overflow-x: hidden;
-  padding: 0; 
-  z-index: 0; 
+.background {
+    position: relative;
+    overflow-x: hidden;
+    padding: 0;
+    z-index: 0;
 }
 
 .background::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: url('/profile_image/background.jpg');
-  background-repeat: repeat;
-  background-size: auto;
-  opacity: 0.2;    
-  z-index: -1; 
-  pointer-events: none; 
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('/profile_image/background.jpg');
+    background-repeat: repeat;
+    background-size: auto;
+    opacity: 0.2;
+    z-index: -1;
+    pointer-events: none;
 }
+
 .clip-path {
     position: relative;
     border-radius: 20px 20px 20px 0;
@@ -31,6 +31,7 @@
     position: relative;
     border-bottom-left-radius: 20px;
 }
+
 .bottom-border {
     width: 60px;
     height: 80px;
@@ -83,10 +84,12 @@
     background: #166534;
     position: absolute;
 }
+
 .dark .border-part:before,
-.dark .border-part::after{
+.dark .border-part::after {
     background-color: #c8f31d;
 }
+
 .border-part::after {
     right: -3px;
     top: -3px;
@@ -115,10 +118,12 @@
     background: #166534;
     position: absolute;
 }
-.dark  .border-part i::before,
-.dark  .border-part i::after {
+
+.dark .border-part i::before,
+.dark .border-part i::after {
     background-color: #c8f31d;
 }
+
 .border-part i::before {
     left: -3px;
     bottom: -3px;
@@ -190,77 +195,67 @@
 }
 
 .dark .backImage {
-  position: relative;
-  overflow-x: hidden; 
-  z-index: 0;
-  background-color: #121212;
+    position: relative;
+    overflow-x: hidden;
+    z-index: 0;
+    background-color: #121212;
 }
+
 .dark .backImage::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: url('/profile_image/background.jpg');
-  background-repeat: repeat;
-  background-size: auto;
-  opacity: 0.09;    
-  z-index: -1; 
-  pointer-events: none; 
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('/profile_image/background.jpg');
+    background-repeat: repeat;
+    background-size: auto;
+    opacity: 0.09;
+    z-index: -1;
+    pointer-events: none;
 }
+
 .lightBackImage {
-  position: relative;
-  overflow-x: hidden; 
-  z-index: 0;
-  background-color: #fff;
+    position: relative;
+    overflow-x: hidden;
+    z-index: 0;
+    background-color: #fff;
 }
+
 .lightBackImage::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: url('/profile_image/background.jpg');
-  background-repeat: repeat;
-  background-size: auto;
-  opacity: 0.2;    
-  z-index: -1; 
-  pointer-events: none; 
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('/profile_image/background.jpg');
+    background-repeat: repeat;
+    background-size: auto;
+    opacity: 0.2;
+    z-index: -1;
+    pointer-events: none;
 }
+
 @media (max-width: 1280px) {
     .background::before {
         left: 0px;
         top: 0;
         border-radius: 0%;
     }
-    .clip-path{
+
+    .clip-path {
         border-bottom-left-radius: 20px;
     }
-    .dark .clip-path {
-        box-shadow:
-            rgba(0, 0, 0, 0.1) 0px 50px 100px -20px,
-            rgba(0, 0, 0, 0.1) 0px 30px 60px -30px,
-            rgba(0, 0, 0, 0.1) 0px -2px 3px 0px inset;
-    }
 
-    .dark .rest-para {
-        box-shadow:
-            rgba(0, 0, 0, 0.1) 0px 50px 100px -20px,
-            rgba(0, 0, 0, 0.1) 0px 30px 60px -30px,
-            rgba(0, 0, 0, 0.1) 0px -2px 6px 0px inset;
-
-    }
 
     .clip-path {
         border-radius: 20px;
-        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
     }
 
     .rest-para {
         border-radius: 20px;
-        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
     }
 
 }
@@ -272,17 +267,18 @@
 }
 
 @media (max-width: 1700px) {
-    .inverted-border{
+    .inverted-border {
         width: 500px;
     }
-    .inverted-top{
+
+    .inverted-top {
         width: 450px;
     }
 }
+
 @media (max-width: 1400px) {
 
     .inverted-top {
         width: 540px;
     }
 }
-
