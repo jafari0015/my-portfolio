@@ -57,12 +57,12 @@ const MobileNavbar: React.FC = memo(() => {
   return (
     <nav
       className={`sm:hidden fixed top-0 left-0 w-full z-50 transition-all duration-700 ${navScrolled
-        ? "dark:bg-stone-900/5 bg-stone-200"
+        ? "dark:bg-stone-950 bg-stone-200"
         : "bg-transparent"
         }`}
     >
       <div className="flex justify-between items-center px-6 py-4">
-        <div className="flex dark:text-stone-100 text-xl font-medium mt-5 tracking-widest cursor-pointer transition-all duration-1000">
+        <div className="flex dark:text-stone-100 text-xl font-medium  mt-5 tracking-widest cursor-pointer transition-all duration-1000">
           <ScrollLink to="home" smooth duration={700}>
             MAHDI
           </ScrollLink>

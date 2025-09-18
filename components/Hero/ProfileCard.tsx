@@ -19,7 +19,7 @@ const ProfileCard = memo(function ProfileCard({ socialLinks }: { socialLinks: So
     };
 
     return (
-        <div className='relative rounded-xl  backImage lightBackImage backdrop-blur-md sm:mt-0 xl:pr-10'>
+        <div className='relative rounded-xl bg-stone-200 dark:bg-stone-900 md:bg-transparent md:dark:bg-transparent backdrop-blur-md sm:mt-0 xl:pr-10'>
             <div className='rounded-xl border-[1px] border-stone-400 dark:border-stone-700 
                             border-solid px-8 py-8 bg-transparent'>
                 <div className='lg:w-72 md:w-52'>
