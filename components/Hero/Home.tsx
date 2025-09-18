@@ -17,7 +17,7 @@ const Home: React.FC = () => {
         </span>
       </div>
       <div className="sm:hidden items-center mt-6 justify-between ">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-stone-900/20 dark:bg-white/10">
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-stone-700/10 dark:bg-white/10">
           <span className="w-2 h-2 rounded-full bg-stone-900 dark:bg-white/100 animate-pulse" />
           <span className="text-stone-800 dark:text-stone-100 font-semibold">
             Hello I am

@@ -95,7 +95,7 @@ export default function BlogDetail({ blog }: { blog: any }) {
           <ToggleButton />
         </span>
       </div>
-      <div className="px-4 sm:px-6 md:px-12 lg:px-20 xl:px-28 py-10 md:py-12 dark:bg-[#121212] bg-[#d2d3db] rounded-xl max-w-7xl mx-auto">
+      <div className="px-2 sm:px-6 md:px-12 lg:px-20 xl:px-28  md:py-12 md:dark:bg-[#121212] md:bg-[#d2d3db] rounded-xl max-w-7xl mx-auto">
         <div className="mb-6">
           <div className="flex flex-wrap items-center justify-center gap-2 mt-4">
             {blog.techs?.map((tech: any, idx: any) => (

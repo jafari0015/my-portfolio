@@ -53,14 +53,14 @@ const WorkDetailPage: React.FC<WorkProps> = ({ work }) => {
           </span>
         </div>
 
-        <div className="bg-white dark:bg-[#121212] shadow-lg  rounded-2xl px-4 sm:p-6 md:p-10 lg:px-16 transition-colors duration-500">
+        <div className="md:bg-white md:dark:bg-[#121212] shadow-lg  rounded-2xl px-1 sm:p-6 md:p-10 lg:px-16 transition-colors duration-500">
           <motion.div
-            className="text-center pt-6 pb-10 sm:mt-0"
+            className="text-center pb-10 sm:mt-0"
             initial="hidden"
             animate="visible"
             variants={fadeUp}
           >
-            <h1 className="text-2xl sm:text-4xl font-bold text-center mt-10 mb-1 dark:text-stone-50 text-stone-900">
+            <h1 className="text-2xl sm:text-4xl font-bold text-center mb-1 dark:text-stone-50 text-stone-900">
               {work.title}
             </h1>
             <p className="dark:text-[#c8f31d] text-green-700 tracking-[0.3rem]">

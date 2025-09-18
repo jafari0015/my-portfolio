@@ -42,7 +42,7 @@ export default function BlogPage({ blogs }: Props) {
         </span>
       </div>
 
-      <div className="px-6 sm:px-10 py-10 bg-gray-100 dark:bg-[#121212] min-h-screen mt-5 rounded-2xl transition-colors duration-500">
+      <div className="px-2 sm:px-10 py-10 md:bg-gray-100  md:dark:bg-[#121212] min-h-screen mt-5 rounded-2xl transition-colors duration-500">
         <motion.div
           className="text-center mb-12"
           initial="hidden"
@@ -64,14 +64,14 @@ export default function BlogPage({ blogs }: Props) {
               className="rounded-md sm:w-full sm:px-24 relative"
             />
             <div
-              className="absolute dark:text-stone-100 text-stone-950 bg-neutral-300 dark:bg-[#1a1a1a] sm:top-[90%] top-[85%] 
-                            p-8 w-full rounded-md sm:max-w-2xl max-w-72"
+              className="absolute dark:text-stone-100 text-stone-950 bg-neutral-200 border border-neutral-300 dark:border-stone-700 dark:bg-[#1a1a1a] sm:top-[90%] top-[85%] 
+                            p-2 md:p-8 w-full rounded-md sm:max-w-2xl max-w-60"
             >
-              <h1 className="sm:text-2xl text-xl font-semibold">
+              <h1 className="sm:text-2xl text-base font-semibold">
                 Welcome to My Blog
               </h1>{" "}
               <br />
-              <p className="text-sm sm:text-base">
+              <p className="text-xs sm:text-base -mt-5 md:mt-0">
                 Here, I share insights, tutorials, and experiences from my
                 journey in tech and beyond. Grab a coffee and enjoy the read!
               </p>
@@ -80,13 +80,13 @@ export default function BlogPage({ blogs }: Props) {
         </motion.div>
 
         <div>
-          <h1 className="dark:text-stone-50 text-stone-950 text-2xl mt-48 sm:mt-40">
+          <h1 className="dark:text-stone-50 text-stone-950 text-2xl mt-40 sm:mt-40">
             All POSTS
           </h1>
         </div>
         <div className="mt-10 dark:bg-[#c8f31d] bg-green-800 text-transparent h-[1px] w-full" />
 
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid md:gap-10 sm:grid-cols-2 lg:grid-cols-3">
           {paginatedBlogs.map((blog) => (
             <motion.div
               initial="hidden"
@@ -96,17 +96,19 @@ export default function BlogPage({ blogs }: Props) {
               className="group lightBackImage backImage rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-stone-700 mt-20"
             >
               {blog.mainImage?.asset?.url && (
-                <div className="overflow-hidden relative h-48 w-full">
-                  <Image
-                    src={blog.mainImage.asset.url}
-                    alt={blog.title}
-                    layout="fill"
-                    objectFit="cover"
-                    className="transform group-hover:scale-105 transition duration-500"
-                    placeholder="blur"
-                    blurDataURL="/placeholder.png"
-                  />
-                </div>
+                <Link href={`/blog/${blog.slug.current}`}>
+                  <div className="overflow-hidden relative h-48 w-full">
+                    <Image
+                      src={blog.mainImage.asset.url}
+                      alt={blog.title}
+                      layout="fill"
+                      objectFit="cover"
+                      className="transform group-hover:scale-105 transition duration-500"
+                      placeholder="blur"
+                      blurDataURL="/placeholder.png"
+                    />
+                  </div>
+                </Link>
               )}
 
               <div className="p-6">

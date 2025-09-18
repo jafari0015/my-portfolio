@@ -39,7 +39,7 @@ const HomePage: NextPage<HomePageProps> = ({
         animate="visible"
         variants={fadeInUp}
       >
-        <div className="clip-path dark:bg-[#121212] bg-[#d2d3db] md:ml-0 md:mr-0 -mx-6">
+        <div className="clip-path md:dark:bg-[#121212] md:bg-[#d2d3db] md:ml-0 md:mr-0 -mx-6">
           <div className="w-full p-8 sm:p-12 block sm:flex items-center  md:gap-8 xl:gap-6 justify-center ">
             <motion.div
               variants={slideInLeft}
@@ -58,7 +58,7 @@ const HomePage: NextPage<HomePageProps> = ({
       </motion.main>
 
       <main className="2xl:px-20">
-        <section className="md:px-8 -ml-4 -mr-4 md:ml-0 md:mr-0 px-4 xl:px-12 py-20 md:mt-10 -mt-10 rest-para dark:bg-[#121212] bg-[#d2d3db]">
+        <section className="md:px-8 -ml-4 -mr-4 md:ml-0 md:mr-0 px-4 xl:px-12 py-20 md:mt-10 -mt-10 rest-para md:dark:bg-[#121212] md:bg-[#d2d3db]">
           <div className="inverted-top dark:bg-[#121212] bg-[#d2d3db] hidden xl:flex">
             <div className="top-border dark:bg-[#121212] bg-[#d2d3db] hidden xl:flex"></div>
           </div>
