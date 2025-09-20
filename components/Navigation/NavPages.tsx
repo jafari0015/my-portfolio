@@ -4,18 +4,43 @@ import React, { useState } from "react";
 import { FiX } from "react-icons/fi";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import ToggleButton from "../Dark-Light/ToggleButton";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  // Slide-in menu variants
+  const menuVariants = {
+    hidden: { x: "100%", opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: { duration: 0.5, ease: "easeInOut", when: "beforeChildren", staggerChildren: 0.1 },
+    },
+    exit: { x: "100%", opacity: 0, transition: { duration: 0.3, ease: "easeInOut" } },
+  };
+
+  // Individual menu item variants
+  const menuItemVariants = {
+    hidden: { x: 20, opacity: 0 },
+    visible: { x: 0, opacity: 1, transition: { duration: 0.3 } },
+  };
+
+  // Backdrop variants
+  const backdropVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 0.5, transition: { duration: 0.5 } },
+    exit: { opacity: 0, transition: { duration: 0.3 } },
+  };
+
+  const menuItems = ["Front Page", "About", "Work", "Blog", "Contact"];
+
   return (
-    <nav className="w-full px-6 pb-4 sm:mt-4  -mt-16 flex justify-between items-center bg-transparent">
-      <h1 className="text-2xl font-bold text-stone-800 dark:text-white">
-        MAHDI
-      </h1>
+    <nav className="w-full pb-4 sm:mt-4 -mt-24 flex justify-between items-center bg-transparent relative z-50">
+      <h1 className="text-2xl font-bold text-stone-800 dark:text-white">MAHDI</h1>
 
       <ul className="hidden md:flex gap-6">
-        {["Front Page", "About", "Work", "Blog", "Contact"].map((item, idx) => (
+        {menuItems.map((item, idx) => (
           <li key={idx}>
             <Link
               href="/"
@@ -34,33 +59,54 @@ const Navbar = () => {
         {isOpen ? <FiX /> : <HiOutlineMenuAlt3 />}
       </button>
 
-      {isOpen && (
-        <div className="absolute mt-20 left-0 w-full bg-white dark:bg-stone-900/10 backdrop-blur-lg border dark:border-b-[#c5f31d] 
-                      border-b-green-700  shadow-md md:hidden z-50">
-          <div className="absolute top-4 left-4">
-            <ToggleButton />
-          </div>
-          <FiX
-            onClick={() => setIsOpen(false)}
-            className="text-3xl absolute right-4 top-4 dark:text-stone-50 text-stone-900 cursor-pointer"
-          />
-          <ul className="flex flex-col items-center gap-4 py-6">
-            {["Front Page", "About", "Work", "Blog", "Contact"].map(
-              (item, idx) => (
-                <li key={idx}>
-                  <Link
-                    href="/"
-                    className="block text-stone-700 dark:text-stone-200 dark:hover:text-[#c8f31d] font-semibold hover:text-green-700 transition-all duration-500"
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              className="fixed inset-0 bg-black dark:bg-stone-900 z-40"
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              variants={backdropVariants}
+              onClick={() => setIsOpen(false)}
+            />
+
+            {/* Sliding Menu */}
+            <motion.div
+              className="fixed top-0 right-0 h-full w-64 bg-white dark:bg-stone-900/90 backdrop-blur-lg border-l border-stone-200 dark:border-[#c5f31d] shadow-md z-50"
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              variants={menuVariants}
+            >
+              <div className="absolute top-4 left-4">
+                <ToggleButton />
+              </div>
+              <FiX
+                onClick={() => setIsOpen(false)}
+                className="text-3xl absolute right-4 top-4 dark:text-stone-50 text-stone-900 cursor-pointer"
+              />
+              <motion.ul className="flex flex-col items-center justify-start gap-4 py-20">
+                {menuItems.map((item, idx) => (
+                  <motion.li
+                    key={idx}
+                    variants={menuItemVariants}
                     onClick={() => setIsOpen(false)}
                   >
-                    {item}
-                  </Link>
-                </li>
-              )
-            )}
-          </ul>
-        </div>
-      )}
+                    <Link
+                      href="/"
+                      className="block text-stone-700 dark:text-stone-200 dark:hover:text-[#c8f31d] font-semibold hover:text-green-700 transition-all duration-500"
+                    >
+                      {item}
+                    </Link>
+                  </motion.li>
+                ))}
+              </motion.ul>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };

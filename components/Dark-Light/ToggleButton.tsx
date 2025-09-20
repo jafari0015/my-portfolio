@@ -43,7 +43,7 @@ const ToggleButton = () => {
                         strokeWidth="2"
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        className="lucide lucide-moon text-yellow-300"
+                        className="lucide lucide-moon text-stone"
                     >
                         <path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401" />
                     </svg>
@@ -63,7 +63,6 @@ const ToggleButton = () => {
                 )}
             </button>
 
-            {/* Ripple overlay */}
             {animating && (
                 <span
                     className={`fixed inset-0 z-10 rounded-full ${theme === "dark" ? "bg-stone-50" : "bg-stone-900"
@@ -71,20 +70,6 @@ const ToggleButton = () => {
                 />
             )}
 
-            <style jsx>{`
-        @keyframes spread {
-          0% {
-            transform: scale(0);
-            opacity: 0.6;
-            border-radius: 50%;
-          }
-          100% {
-            transform: scale(5);
-            opacity: 0;
-            border-radius: 50%;
-          }
-        }
-      `}</style>
         </div>
     );
 };
