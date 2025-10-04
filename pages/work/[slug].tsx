@@ -53,7 +53,7 @@ const WorkDetailPage: React.FC<WorkProps> = ({ work }) => {
           </span>
         </div>
 
-        <div className="md:bg-white md:dark:bg-[#121212] shadow-lg  rounded-2xl px-1 sm:p-6 md:p-10 lg:px-16 transition-colors duration-500">
+        <div className="md:bg-white md:dark:bg-[#121212]  rounded-2xl px-1 sm:p-6 md:p-10 lg:px-16 transition-colors duration-500">
           <motion.div
             className="text-center pb-10 sm:mt-0"
             initial="hidden"

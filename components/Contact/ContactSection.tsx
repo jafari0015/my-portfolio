@@ -28,7 +28,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({ iconsPlatform }) => {
           consultation, or simply want to exchange technical topics, please feel
           free to contact me at any time.
         </p>
-        <div className=" lg:flex items-center justify-around lg:gap-5 xl:gap-10 ">
+        <div className=" lg:flex items-center justify-between lg:gap-5 xl:gap-10 ">
           <motion.div
             variants={fadeInUp}
             initial="hidden"

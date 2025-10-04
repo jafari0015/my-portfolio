@@ -84,7 +84,7 @@ const ContactForm: React.FC = () => {
     >
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col gap-4 lg:w-[350px] xl:w-[450px]"
+        className="flex flex-col gap-4 lg:w-[350px] xl:w-[500px]"
       >
         <input
           type="text"
